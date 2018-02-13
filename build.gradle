@@ -29,6 +29,8 @@ configurations {
 
 ext {
 	vaadinVersion = '8.3.0'
+	jerseyVersion = '2.26'
+	wsRsApiVersion = '2.1'
 	servletApiVersion = '4.0.0'
 }
 
@@ -36,6 +38,12 @@ dependencies {
 	compile('com.vaadin:vaadin-spring-boot-starter')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.projectlombok:lombok')
+	compile("org.glassfish.jersey.containers:jersey-container-servlet:${jerseyVersion}")
+	compile("org.glassfish.jersey.core:jersey-common:${jerseyVersion}")
+	compile("org.glassfish.jersey.core:jersey-client:${jerseyVersion}")
+	compile("org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}")
+	compile("org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}")
+	compile("javax.ws.rs:javax.ws.rs-api:${wsRsApiVersion}")
 	providedRuntime("javax.servlet:javax.servlet-api:${servletApiVersion}")
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -44,5 +52,6 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+		mavenBom "org.glassfish.jersey:jersey-bom:${jerseyVersion}"
 	}
 }
